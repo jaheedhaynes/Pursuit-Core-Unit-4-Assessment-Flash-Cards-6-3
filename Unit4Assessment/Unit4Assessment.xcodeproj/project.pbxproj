@@ -21,6 +21,7 @@
 		3015DA6F23F32625002DD19D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA6E23F32625002DD19D /* SearchCell.swift */; };
 		3015DA7123F32BA8002DD19D /* CardData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3015DA7023F32BA8002DD19D /* CardData.json */; };
 		3015DA7323F3343F002DD19D /* LocalAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA7223F3343F002DD19D /* LocalAPIClient.swift */; };
+		3015DA7523F33DB4002DD19D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA7423F33DB4002DD19D /* DataManager.swift */; };
 		5790239823F2EE39000AA216 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239723F2EE39000AA216 /* AppDelegate.swift */; };
 		5790239A23F2EE39000AA216 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239923F2EE39000AA216 /* SceneDelegate.swift */; };
 		5790239C23F2EE39000AA216 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790239B23F2EE39000AA216 /* TabBarController.swift */; };
@@ -53,6 +54,7 @@
 		3015DA6E23F32625002DD19D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		3015DA7023F32BA8002DD19D /* CardData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CardData.json; sourceTree = "<group>"; };
 		3015DA7223F3343F002DD19D /* LocalAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAPIClient.swift; sourceTree = "<group>"; };
+		3015DA7423F33DB4002DD19D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		5790239423F2EE39000AA216 /* Unit4Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unit4Assessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5790239723F2EE39000AA216 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5790239923F2EE39000AA216 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				3015DA6323F30203002DD19D /* Model.swift */,
 				3015DA6523F30370002DD19D /* APIClient.swift */,
 				3015DA7223F3343F002DD19D /* LocalAPIClient.swift */,
+				3015DA7423F33DB4002DD19D /* DataManager.swift */,
 				3015DA7023F32BA8002DD19D /* CardData.json */,
 				3015DA6023F2FC00002DD19D /* View */,
 				3015DA5923F2FBA4002DD19D /* Controllers */,
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3015DA5B23F2FBD1002DD19D /* CardView.swift in Sources */,
+				3015DA7523F33DB4002DD19D /* DataManager.swift in Sources */,
 				3015DA5F23F2FBFA002DD19D /* SearchView.swift in Sources */,
 				3015DA5823F2FB7A002DD19D /* SearchViewController.swift in Sources */,
 				3015DA6F23F32625002DD19D /* SearchCell.swift in Sources */,

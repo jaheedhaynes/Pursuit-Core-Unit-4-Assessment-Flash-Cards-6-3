@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 protocol AddButtonDelegate: AnyObject {
     func addCardButton()
 }
@@ -48,7 +49,7 @@ class SearchCell: UICollectionViewCell {
     }
     
     private func commonInit() {
-        
+        searchCardConstraints()
     }
     
     private func searchCardConstraints() {
