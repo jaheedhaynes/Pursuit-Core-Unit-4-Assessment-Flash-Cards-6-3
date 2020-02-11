@@ -11,7 +11,7 @@ import NetworkHelper
 
 struct FlashCardAPI {
     
-    static func getFlashCards(completion: @escaping (Result<FlashCard,AppError>) -> ()) {
+    static func getFlashCards(completion: @escaping (Result<Card,AppError>) -> ()) {
         
         let endpoint = "https://5daf8b36f2946f001481d81c.mockapi.io/api/v2/cards"
 
@@ -27,7 +27,7 @@ struct FlashCardAPI {
                         completion(.failure(.networkClientError(appError)))
                     case .success(let flashCardData):
                         do {
-                            let flashCards = try JSONDecoder().decode(FlashCard.self, from: flashCardData)
+                            let flashCards = try JSONDecoder().decode(Card.self, from: flashCardData)
                             completion(.success(flashCards))
                         } catch {
                             completion(.failure(.decodingError(error)))
