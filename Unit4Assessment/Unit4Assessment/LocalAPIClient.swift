@@ -21,6 +21,7 @@ import Foundation
 //    let facts: [String]
 //}
 
+/*
 struct FlashCardElement: Codable & Equatable {
     let id, quizTitle: String
     let facts: [String]
@@ -58,3 +59,4 @@ extension FlashCard {
         return cards
     }
 }
+*/

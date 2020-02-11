@@ -8,7 +8,7 @@
 
 import Foundation
 
-/*
+
 struct FlashCard: Codable & Equatable {
     let cardListType: String
     let apiVersion: String
@@ -21,7 +21,8 @@ struct Card: Codable & Equatable {
     let cardTitle: String
     let facts: [String]
 }
-
+ 
+/*
 //----------------------------------------------------------------------------------------------
 
 extension FlashCard {
