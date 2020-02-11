@@ -19,7 +19,7 @@ class QuizzCell: UICollectionViewCell {
     
     lazy var cardTopicLabel: UILabel = {
         let label = UILabel()
-        label.text = "Topic goes here"
+        label.text = "Enter Topic"
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
