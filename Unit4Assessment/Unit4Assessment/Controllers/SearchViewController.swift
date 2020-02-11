@@ -13,10 +13,29 @@ class SearchViewController: UIViewController {
     
     public var dataPersistence: DataPersistence<Card>!
     
+    var searchCardView = SearchView()
+    
+    var searchInfo = [Card]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.searchCardView.searchCardsCollectionView.reloadData()
+            }
+        }
+    }
+    
+    var titleForSegueCards = ""
+    var factsFromOnlineData = [String]()
+    var onlineId = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemRed
-       
+        view.backgroundColor = #colorLiteral(red: 0.9969699979, green: 0.5268434286, blue: 0.6515719891, alpha: 1)
+        
+        
+    }
+    
+    override func loadView() {
+        view = searchCardView
     }
     
 

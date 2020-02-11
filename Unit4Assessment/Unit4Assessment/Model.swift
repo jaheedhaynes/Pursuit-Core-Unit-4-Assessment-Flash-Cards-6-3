@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Unit4: Codable & Equatable {
+struct FlashCard: Codable & Equatable {
     let cardListType: String
     let apiVersion: String
     let cards: [Card]

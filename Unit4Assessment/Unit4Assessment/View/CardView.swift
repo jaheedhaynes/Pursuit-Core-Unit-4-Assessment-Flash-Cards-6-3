@@ -18,6 +18,7 @@ class CardView: UIView {
         let collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = #colorLiteral(red: 0.9633663297, green: 0.8417919278, blue: 0.7775592804, alpha: 1)
         return collectionView
+        
     }()
 
     override init(frame: CGRect) {

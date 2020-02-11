@@ -13,6 +13,14 @@ class CardViewController: UIViewController {
 
     public var dataPersistence: DataPersistence<Card>!
     
+    private var savedCreatedCard = CreateView()
+    
+    private var createdCard = [Card]() {
+        didSet {
+            //
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

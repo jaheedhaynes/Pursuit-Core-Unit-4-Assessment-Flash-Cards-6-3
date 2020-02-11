@@ -9,33 +9,30 @@
 import Foundation
 import NetworkHelper
 
-struct CardAPIClient {
+struct FlashCardAPI {
     
-    static func fetchCard(for id: String, completion: @escaping (Result<[Card], AppError>) -> ()) {
+    static func getFlashCards(completion: @escaping (Result<FlashCard,AppError>) -> ()) {
+        let endpoint = "https://5daf8b36f2946f001481d81c.mockapi.io/api/v2/cards"
+
+                guard let url = URL(string: endpoint) else {
+                    completion(.failure(.badURL(endpoint)))
+                    return
+                }
         
-        let endpointURLString = "https://5daf8b36f2946f001481d81c.mockapi.io/api/v2/cards"
-        
-        guard let url = URL(string: endpointURLString) else {
-            completion(.failure(.badURL(endpointURLString)))
-            return
-        }
-        
-        let request = URLRequest(url: url)
-        
-        NetworkHelper.shared.performDataTask(with: request) { (result) in
-            switch result {
-            case .failure(let appError):
-                completion(.failure(.networkClientError(appError)))
-            case .success(let data):
-                do {
-                    let cardValue = try JSONDecoder().decode(Unit4.self, from: data)
-                    completion(.success(cardValue.cards))
-                    print(" \(dump(cardValue.cards))")
-                } catch {
-                    completion(.failure(.decodingError(error)))
+                let request = URLRequest(url: url)
+                NetworkHelper.shared.performDataTask(with: request) { (result) in
+                    switch result {
+                    case .failure(let appError):
+                        completion(.failure(.networkClientError(appError)))
+                    case .success(let flashCardData):
+                        do {
+                            let flashCards = try JSONDecoder().decode(FlashCard.self, from: flashCardData)
+                            completion(.success(flashCards))
+                        } catch {
+                            completion(.failure(.decodingError(error)))
+                        }
+                    }
                 }
             }
         }
-    }
-}
 

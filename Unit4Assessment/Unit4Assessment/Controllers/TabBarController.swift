@@ -25,7 +25,7 @@ class TabBarController: UITabBarController {
         viewController.dataPersistence = dataPersistance
         
        
-        viewController.dataPersistence.delegate = viewController as? DataPersistenceDelegate
+        viewController.dataPersistence.delegate = viewController  as? DataPersistenceDelegate
         viewController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(systemName: "folder"), tag: 1)
         return viewController
     }()
