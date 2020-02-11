@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import DataPersistence
 
 class CreateViewController: UIViewController {
-
+    
+    public var dataPersistence: DataPersistence<Card>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        view.backgroundColor = .systemPink
     }
     
 

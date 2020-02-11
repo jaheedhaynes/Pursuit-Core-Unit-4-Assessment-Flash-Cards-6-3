@@ -9,14 +9,14 @@
 import Foundation
 
 
-struct Unit4: Codable {
+struct Unit4: Codable & Equatable {
     let cardListType: String
     let apiVersion: String
     let cards: [Card]
 }
 
 
-struct Card: Codable {
+struct Card: Codable & Equatable {
     let id: String
     let cardTitle: String
     let facts: [String]

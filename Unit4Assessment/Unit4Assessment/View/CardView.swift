@@ -8,10 +8,11 @@
 
 import UIKit
 
-class CardsView: UIView {
+class CardView: UIView {
 
     public lazy var cardCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 250, height: 250)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 8, bottom: 20, right: 8)
         let collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
@@ -44,5 +45,4 @@ class CardsView: UIView {
             cardCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor)
         ])
     }
-
 }
