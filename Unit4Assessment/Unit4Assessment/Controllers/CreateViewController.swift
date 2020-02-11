@@ -11,7 +11,7 @@ import DataPersistence
 
 class CreateViewController: UIViewController {
     
-    public var dataPersistence: DataPersistence<FlashCard>!
+    public var dataPersistence: DataPersistence<Card>!
     
     public lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

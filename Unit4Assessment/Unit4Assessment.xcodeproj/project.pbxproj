@@ -129,6 +129,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		3015DAAF23F368D1002DD19D /* APIClients */ = {
+			isa = PBXGroup;
+			children = (
+				3015DA6523F30370002DD19D /* APIClient.swift */,
+				3015DA7223F3343F002DD19D /* LocalAPIClient.swift */,
+			);
+			path = APIClients;
+			sourceTree = "<group>";
+		};
 		5790238B23F2EE39000AA216 = {
 			isa = PBXGroup;
 			children = (
@@ -153,8 +162,7 @@
 				5790239723F2EE39000AA216 /* AppDelegate.swift */,
 				5790239923F2EE39000AA216 /* SceneDelegate.swift */,
 				3015DA6323F30203002DD19D /* Model.swift */,
-				3015DA6523F30370002DD19D /* APIClient.swift */,
-				3015DA7223F3343F002DD19D /* LocalAPIClient.swift */,
+				3015DAAF23F368D1002DD19D /* APIClients */,
 				3015DA7423F33DB4002DD19D /* DataManager.swift */,
 				3015DAAD23F36305002DD19D /* showAlert.swift */,
 				3015DA7023F32BA8002DD19D /* CardData.json */,

@@ -11,11 +11,11 @@ import DataPersistence
 
 class SearchViewController: UIViewController {
     
-    public var dataPersistence: DataPersistence<FlashCard>!
+    public var dataPersistence: DataPersistence<Card>!
     
     var searchCardView = SearchView()
     
-    var searchInfo = [FlashCard]() {
+    var searchInfo = [Card]() {
         didSet {
             DispatchQueue.main.async {
                 self.searchCardView.searchCardsCollectionView.reloadData()

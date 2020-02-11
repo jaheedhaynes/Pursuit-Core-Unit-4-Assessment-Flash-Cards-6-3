@@ -9,11 +9,11 @@
 import Foundation
 
 
-struct FlashCard: Codable & Equatable {
-    let cardListType: String
-    let apiVersion: String
-    let cards: [Card]
-}
+//struct FlashCard: Codable & Equatable {
+//    let cardListType: String
+//    let apiVersion: String
+//    let cards: [Card]
+//}
 
 
 struct Card: Codable & Equatable {

@@ -11,11 +11,11 @@ import DataPersistence
 
 class CardViewController: UIViewController {
 
-    public var dataPersistence: DataPersistence<FlashCard>!
+    public var dataPersistence: DataPersistence<Card>!
     
     private var savedCreatedCard = CreateView()
     
-    private var createdCard = [FlashCard]() {
+    private var createdCard = [Card]() {
         didSet {
             //
         }
