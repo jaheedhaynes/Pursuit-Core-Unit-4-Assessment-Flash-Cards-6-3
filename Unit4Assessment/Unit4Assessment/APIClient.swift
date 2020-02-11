@@ -10,6 +10,7 @@ import Foundation
 import NetworkHelper
 
 struct CardAPIClient {
+    
     static func fetchCard(for id: String, completion: @escaping (Result<[Card], AppError>) -> ()) {
         
         let endpointURLString = "https://5daf8b36f2946f001481d81c.mockapi.io/api/v2/cards"
@@ -29,6 +30,7 @@ struct CardAPIClient {
                 do {
                     let cardValue = try JSONDecoder().decode(Unit4.self, from: data)
                     completion(.success(cardValue.cards))
+                    print(" \(dump(cardValue.cards))")
                 } catch {
                     completion(.failure(.decodingError(error)))
                 }
