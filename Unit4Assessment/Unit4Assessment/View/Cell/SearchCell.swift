@@ -18,7 +18,7 @@ class SearchCell: UICollectionViewCell {
     
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
        let gesture = UILongPressGestureRecognizer()
-        gesture.addTarget(self, action: #selector(longPressed(_:)))
+        gesture.addTarget(self, action: #selector(didLongPress(_:)))
         return gesture
     }()
     

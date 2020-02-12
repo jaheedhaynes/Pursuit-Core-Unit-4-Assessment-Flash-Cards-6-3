@@ -18,11 +18,11 @@ class UserCardCell: UICollectionViewCell {
     
     public var selectedCard: Card!
     
-    private var isPressed = false
+    private var isCardPressed = false
     
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
         let gesture = UILongPressGestureRecognizer()
-        gesture.addTarget(self, action: #selector(longPressed(_:)))
+        gesture.addTarget(self, action: #selector(didLongPress(_:)))
         return gesture
     }()
     
@@ -77,18 +77,19 @@ class UserCardCell: UICollectionViewCell {
         delegate?.deleteButtonPressed(cell: self, card: selectedCard)
     }
     
-    @objc private func longPressed(_ gesture: UILongPressGestureRecognizer) {
+    // enables to change
+    @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began || gesture.state == .changed {
             return
         }
-        isPressed.toggle()
+        isCardPressed.toggle()
         animate()
     }
     
     //----------------------------------------------------------
 
     private func animate() {
-        if isPressed {
+        if isCardPressed {
             UIView.transition(with: self, duration: 0.5, options: [.transitionFlipFromRight], animations: {
                 self.answers.alpha = 1
                 self.cardTitle.alpha = 0
