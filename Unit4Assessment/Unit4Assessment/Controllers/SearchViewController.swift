@@ -9,103 +9,114 @@
 import UIKit
 import DataPersistence
 
-class SearchViewController: UIViewController {
+class SearchCardsViewController: UIViewController {
+
+    private let searchView = SearchCardsView()
     
     public var dataPersistence: DataPersistence<Card>!
     
-    var searchCardView = SearchView()
+    override func loadView() {
+        view = searchView
+    }
     
-    var searchInfo = [Card]() {
+    public var currentCards = [Card]() {
         didSet {
             DispatchQueue.main.async {
-                self.searchCardView.searchCardsCollectionView.reloadData()
+                self.searchView.searchCardCollectionView.reloadData()
             }
         }
     }
     
-    var titleForSegueCards = ""
-    var factsFromOnlineData = [String]()
-    var onlineId = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.9969699979, green: 0.5268434286, blue: 0.6515719891, alpha: 1)
-        searchCardView.searchCardsCollectionView.dataSource = self
-        searchCardView.searchCardsCollectionView.delegate = self
-        searchCardView.searchCardsCollectionView.register(SearchCell.self, forCellWithReuseIdentifier: "searchCell")
-
-        
-    }
-    
-    override func loadView() {
-        view = searchCardView
-    }
-    
-    func fetchCards() {
-       
-    }
-
- 
-
-}
-
-extension SearchViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return searchInfo.count
+        getLocalCards()
+        searchView.searchCardCollectionView.delegate = self
+        searchView.searchCardCollectionView.dataSource = self
+        searchView.searchCardCollectionView.register(SearchCell.self, forCellWithReuseIdentifier: "searchCell")
     }
     
     
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = searchCardView.searchCardsCollectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? SearchCell else { return UICollectionViewCell() }
-        
-        let cellInfo = searchInfo[indexPath.row]
-        cell.backgroundColor = .white
-        
-//        cell.searchCardTopicLabel.text = cellInfo.cardTitle
-//        cell.addItemButton.tag = indexPath.row
-//        cell.addItemButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
-//
-//        self.titleForSegueCards = cellInfo.cardTitle
-//        self.factsFromOnlineData = cellInfo.facts
-//        self.onlineId = cellInfo.id
-        
-        
-        return cell
-    }
-    
-    @objc func addButtonPressed(_ sender: UIButton) {
-        
-        
-        //let objectToSave = Card.init(from: <#T##Decoder#>)
-        //UserQuizzDataManager.addEntry(quiz: objectToSave)
-        
-        
-        let objectSaved = UIAlertController.init(title: "Quiz was saved", message: nil, preferredStyle: .alert)
-        let ok = UIAlertAction.init(title: "Ok", style: .default) { (UIAlertAction) in
-            self.dismiss(animated: true, completion: nil)
+    private func getCards() {
+        CardsAPIClient.getCards { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                print("error getting data \(appError)")
+            case .success(let cards):
+                self?.currentCards = cards
+            }
         }
-        objectSaved.addAction(ok)
-        present(objectSaved, animated: true, completion: nil)
+    }
+    
+    
+    private func getLocalCards() {
+        do {
+            currentCards = try FlashCardService.getlocalJSONData()
+        } catch {
+            print("could not get data")
+            showAlert(title: "NO DATA", message: "No Cards were found. Check API")
+        }
     }
 }
 
-extension SearchViewController: UICollectionViewDelegateFlowLayout {
+
+
+//---------------------------------------------------------------------------------------------------
+// MARK: EXTENSIONS
+
+extension SearchCardsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let maxSize: CGSize = UIScreen.main.bounds.size
-
-        let itemWidth: CGFloat = maxSize.width
-
-        let itemHeight: CGFloat = maxSize.height * 0.20 // 30%
-
+        let maxsize: CGSize = UIScreen.main.bounds.size
+        let itemWidth: CGFloat = maxsize.width * 0.8
+        let itemHeight: CGFloat = maxsize.height * 0.30
         return CGSize(width: itemWidth, height: itemHeight)
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+
+}
+
+
+extension SearchCardsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return currentCards.count
+    }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let card = searchInfo[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let searchCardCell = searchView.searchCardCollectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as? SearchCell else {
+            
+            fatalError("could not downcast to cell")
+        }
         
+        let card = currentCards[indexPath.row]
         
+        searchCardCell.configureCell(for: card)
+        
+        searchCardCell.delegate = self
+        
+        searchCardCell.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        searchCardCell.selectedCard = card
+        
+        return searchCardCell
+    }
+    
+}
+
+
+extension SearchCardsViewController: SaveUserCreateCardDelegate {
+    
+    func didCreateCard(card: Card) {
+        if dataPersistence.hasItemBeenSaved(card) {
+            showAlert(title: "\(card.quizTitle) has already been saved", message: "ERROR")
+            return
+        }
+        do {
+            try dataPersistence.createItem(card)
+            showAlert(title: "Card added to collection", message: "\(card.quizTitle) Saved")
+        } catch {
+            //print("could not save \(error)")
+            showAlert(title: "Failed to Save \(card.quizTitle)", message: "Unable to save error: \(error)")
+        }
     }
 }

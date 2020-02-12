@@ -7,72 +7,137 @@
 //
 
 import UIKit
-import DataPersistence
 
-protocol DeleteItemButtonDelegate: AnyObject {
-    func moreActionsButtonPressed()
+protocol UserCellDelegate: AnyObject {
+    func deleteButtonPressed(cell: UserCardCell, card: Card)
 }
 
-class QuizzCell: UICollectionViewCell {
+class UserCardCell: UICollectionViewCell {
     
-    var delegate: DeleteItemButtonDelegate?
+    weak var delegate: UserCellDelegate?
     
-    lazy var cardTopicLabel: UILabel = {
+    public var selectedCard: Card!
+    
+    private var isPressed = false
+    
+    private lazy var longPressGesture: UILongPressGestureRecognizer = {
+        let gesture = UILongPressGestureRecognizer()
+        gesture.addTarget(self, action: #selector(longPressed(_:)))
+        return gesture
+    }()
+    
+    
+    public lazy var cardTitle: UILabel = {
         let label = UILabel()
-        label.text = "Enter Topic"
-        label.textAlignment = .center
-        label.numberOfLines = 0
+        label.text = "flash card sample"
+        label.numberOfLines = 2
         return label
     }()
     
-    lazy var deleteItemButton: UIButton = {
+    
+    public lazy var answers: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.alpha = 0
+        return label
+    }()
+    
+    
+    public lazy var ellipsisButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "more-filled"), for: .normal)
-        button.addTarget(self, action: #selector(deleteItemButtonPressed), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        button.addTarget(self, action: #selector(detailActionButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
     
-    @objc func deleteItemButtonPressed() {
-        delegate?.moreActionsButtonPressed()
-    }
     
     override init(frame: CGRect) {
-        super.init(frame: UIScreen.main.bounds)
+        super.init(frame: frame)
         commonInit()
-        
     }
+    
     
     required init?(coder: NSCoder) {
-        super .init(coder: coder)
+        super.init(coder: coder)
         commonInit()
     }
     
-    private func commonInit() {
-           setupQuizzTopic()
-           setupDeleteButton()
-           
-       }
     
-    private func setupQuizzTopic() {
-        addSubview(cardTopicLabel)
-        cardTopicLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-        cardTopicLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-        cardTopicLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-        cardTopicLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
-        cardTopicLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 11)
-        ])
-        
+    private func commonInit() {
+        buttonConstraints()
+        titleConstraints()
+        answersConstraints()
+        addGestureRecognizer(longPressGesture)
     }
     
-    private func setupDeleteButton() {
-        addSubview(deleteItemButton)
-        deleteItemButton.translatesAutoresizingMaskIntoConstraints = false
-        
+    //----------------------------------------------------------
+    // MARK: OBJC ACTION METHODS
+    
+    @objc public func detailActionButtonPressed(_ sender: UIButton) {
+        delegate?.deleteButtonPressed(cell: self, card: selectedCard)
+    }
+    
+    @objc private func longPressed(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began || gesture.state == .changed {
+            return
+        }
+        isPressed.toggle()
+        animate()
+    }
+    
+    //----------------------------------------------------------
+
+    private func animate() {
+        if isPressed {
+            UIView.transition(with: self, duration: 1.0, options: [.transitionFlipFromRight], animations: {
+                self.answers.alpha = 1.0
+                self.cardTitle.alpha = 0
+            }, completion: nil)
+        } else {
+            UIView.transition(with: self, duration: 1.0, options: [.transitionFlipFromLeft], animations: {
+                self.answers.alpha = 0
+                self.cardTitle.alpha = 1.0
+            }, completion: nil)
+        }
+    }
+    
+    public func configureCell(for card: Card) {
+          cardTitle.text = card.quizTitle
+          answers.text = "\(card.facts.first ?? "") \n\(card.facts.last ?? "")"
+      }
+    
+//------------------------------------------------------------------------------------------------
+// MARK: CONSTRAINTS
+    
+    private func buttonConstraints() {
+        addSubview(ellipsisButton)
+        ellipsisButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        deleteItemButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 12),
-        deleteItemButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11)
+            ellipsisButton.topAnchor.constraint(equalTo: topAnchor),
+            ellipsisButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            ellipsisButton.heightAnchor.constraint(equalToConstant: 44),
+            ellipsisButton.widthAnchor.constraint(equalTo: ellipsisButton.heightAnchor)
+        ])
+    }
+    
+    private func titleConstraints() {
+        addSubview(cardTitle)
+        cardTitle.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cardTitle.topAnchor.constraint(equalTo: ellipsisButton.bottomAnchor, constant: 10),
+            cardTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            cardTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+        ])
+    }
+    
+    private func answersConstraints() {
+        addSubview(answers)
+        answers.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            answers.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            answers.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            answers.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            answers.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

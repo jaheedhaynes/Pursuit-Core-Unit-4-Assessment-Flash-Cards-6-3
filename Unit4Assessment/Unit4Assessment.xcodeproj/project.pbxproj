@@ -10,10 +10,10 @@
 		3015DA5423F2FB16002DD19D /* UserCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA5323F2FB16002DD19D /* UserCardViewController.swift */; };
 		3015DA5623F2FB3E002DD19D /* CreatedCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA5523F2FB3E002DD19D /* CreatedCardsViewController.swift */; };
 		3015DA5823F2FB7A002DD19D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA5723F2FB7A002DD19D /* SearchViewController.swift */; };
-		3015DA5B23F2FBD1002DD19D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA5A23F2FBD1002DD19D /* CardView.swift */; };
-		3015DA5D23F2FBEB002DD19D /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA5C23F2FBEB002DD19D /* CreateView.swift */; };
-		3015DA5F23F2FBFA002DD19D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA5E23F2FBFA002DD19D /* SearchView.swift */; };
-		3015DA6223F3012B002DD19D /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA6123F3012B002DD19D /* EmptyView.swift */; };
+		3015DA5B23F2FBD1002DD19D /* UserCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA5A23F2FBD1002DD19D /* UserCardView.swift */; };
+		3015DA5D23F2FBEB002DD19D /* CreateCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA5C23F2FBEB002DD19D /* CreateCardsView.swift */; };
+		3015DA5F23F2FBFA002DD19D /* SearchCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA5E23F2FBFA002DD19D /* SearchCardsView.swift */; };
+		3015DA6223F3012B002DD19D /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA6123F3012B002DD19D /* EmptyState.swift */; };
 		3015DA6423F30203002DD19D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA6323F30203002DD19D /* Model.swift */; };
 		3015DA6623F30370002DD19D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA6523F30370002DD19D /* APIClient.swift */; };
 		3015DA6923F304DF002DD19D /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3015DA6823F304DF002DD19D /* ImageKit */; };
@@ -45,10 +45,10 @@
 		3015DA5323F2FB16002DD19D /* UserCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardViewController.swift; sourceTree = "<group>"; };
 		3015DA5523F2FB3E002DD19D /* CreatedCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedCardsViewController.swift; sourceTree = "<group>"; };
 		3015DA5723F2FB7A002DD19D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		3015DA5A23F2FBD1002DD19D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		3015DA5C23F2FBEB002DD19D /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
-		3015DA5E23F2FBFA002DD19D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		3015DA6123F3012B002DD19D /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		3015DA5A23F2FBD1002DD19D /* UserCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardView.swift; sourceTree = "<group>"; };
+		3015DA5C23F2FBEB002DD19D /* CreateCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardsView.swift; sourceTree = "<group>"; };
+		3015DA5E23F2FBFA002DD19D /* SearchCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardsView.swift; sourceTree = "<group>"; };
+		3015DA6123F3012B002DD19D /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		3015DA6323F30203002DD19D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3015DA6523F30370002DD19D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		3015DA6C23F320A3002DD19D /* UserCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardCell.swift; sourceTree = "<group>"; };
@@ -102,11 +102,11 @@
 		3015DA6023F2FC00002DD19D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3015DA5A23F2FBD1002DD19D /* UserCardView.swift */,
+				3015DA5C23F2FBEB002DD19D /* CreateCardsView.swift */,
+				3015DA5E23F2FBFA002DD19D /* SearchCardsView.swift */,
+				3015DA6123F3012B002DD19D /* EmptyState.swift */,
 				3015DA7C23F353FC002DD19D /* Cell */,
-				3015DA5A23F2FBD1002DD19D /* CardView.swift */,
-				3015DA5E23F2FBFA002DD19D /* SearchView.swift */,
-				3015DA5C23F2FBEB002DD19D /* CreateView.swift */,
-				3015DA6123F3012B002DD19D /* EmptyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,6 +138,14 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		3023EC8A23F47B450082A338 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3015DA6323F30203002DD19D /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5790238B23F2EE39000AA216 = {
 			isa = PBXGroup;
 			children = (
@@ -162,9 +170,9 @@
 				5790239723F2EE39000AA216 /* AppDelegate.swift */,
 				5790239923F2EE39000AA216 /* SceneDelegate.swift */,
 				3015DA7423F33DB4002DD19D /* DataManager.swift */,
-				3015DA6323F30203002DD19D /* Model.swift */,
 				3015DAAD23F36305002DD19D /* showAlert.swift */,
 				3015DAAF23F368D1002DD19D /* APIClients */,
+				3023EC8A23F47B450082A338 /* Model */,
 				3015DA6023F2FC00002DD19D /* View */,
 				3015DA5923F2FBA4002DD19D /* Controllers */,
 				579023A023F2EE3B000AA216 /* Assets.xcassets */,
@@ -290,16 +298,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3015DA5B23F2FBD1002DD19D /* CardView.swift in Sources */,
+				3015DA5B23F2FBD1002DD19D /* UserCardView.swift in Sources */,
 				3015DA7523F33DB4002DD19D /* DataManager.swift in Sources */,
 				3015DAAE23F36305002DD19D /* showAlert.swift in Sources */,
-				3015DA5F23F2FBFA002DD19D /* SearchView.swift in Sources */,
+				3015DA5F23F2FBFA002DD19D /* SearchCardsView.swift in Sources */,
 				3015DA5823F2FB7A002DD19D /* SearchViewController.swift in Sources */,
 				3015DA6F23F32625002DD19D /* SearchCell.swift in Sources */,
-				3015DA5D23F2FBEB002DD19D /* CreateView.swift in Sources */,
+				3015DA5D23F2FBEB002DD19D /* CreateCardsView.swift in Sources */,
 				3015DA5623F2FB3E002DD19D /* CreatedCardsViewController.swift in Sources */,
 				3015DA5423F2FB16002DD19D /* UserCardViewController.swift in Sources */,
-				3015DA6223F3012B002DD19D /* EmptyView.swift in Sources */,
+				3015DA6223F3012B002DD19D /* EmptyState.swift in Sources */,
 				5790239C23F2EE39000AA216 /* TabBarController.swift in Sources */,
 				3015DA6423F30203002DD19D /* Model.swift in Sources */,
 				3015DA7323F3343F002DD19D /* LocalAPIClient.swift in Sources */,

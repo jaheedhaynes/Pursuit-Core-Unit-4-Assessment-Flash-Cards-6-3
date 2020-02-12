@@ -9,36 +9,43 @@
 import UIKit
 import DataPersistence
 
-class TabBarController: UITabBarController {
-    
-    private var dataPersistance = DataPersistence<Card>(filename: "card.plist")
-    
-    private lazy var cardVC: CardViewController = {
-        let viewController = CardViewController()
-        viewController.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "eyeglasses"), tag: 0)
-        viewController.dataPersistence = dataPersistance
-        return viewController
-    }()
-    
-    private lazy var createVC: CreateViewController = {
-        let viewController = CreateViewController()
-        viewController.dataPersistence = dataPersistance
-        
-       
-        viewController.dataPersistence.delegate = viewController  as? DataPersistenceDelegate
-        viewController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(systemName: "folder"), tag: 1)
-        return viewController
-    }()
-    
-    private lazy var searchVC: SearchViewController = {
-        let viewController = SearchViewController()
-        viewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "gear"), tag: 2)
-        return viewController
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        viewControllers = [UINavigationController(rootViewController: cardVC), UINavigationController(rootViewController: createVC), UINavigationController(rootViewController: searchVC)]
-    }
-}
+class TabBar: UITabBarController {
 
+   private let dataPersistence = DataPersistence<Card>(filename: "createdCards.plist")
+        
+        private lazy var userCardsVC: UserCardsViewController = {
+            let viewController = UserCardsViewController()
+            viewController.tabBarItem = UITabBarItem(title: "Flashcards", image: UIImage(systemName: "mic.fill"), tag: 0)
+            viewController.view.backgroundColor = .systemBackground
+            viewController.dataPersistence = dataPersistence
+            viewController.dataPersistence.delegate = viewController
+            return viewController
+        }()
+    
+    
+        private lazy var createCardsVC: CreateCardsViewController = {
+            let viewController = CreateCardsViewController()
+            viewController.tabBarItem = UITabBarItem(title: "Create", image: UIImage(systemName: "mic.fill"), tag: 1)
+            viewController.view.backgroundColor = .systemBackground
+            viewController.dataPersistence = dataPersistence
+            return viewController
+        }()
+    
+    
+        private lazy var searchCardsVC: SearchCardsViewController = {
+            let viewController = SearchCardsViewController()
+            viewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "mic.fill"), tag: 2)
+            viewController.view.backgroundColor = .systemBackground
+            viewController.dataPersistence = dataPersistence
+            return viewController
+        }()
+        
+    
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            viewControllers = [userCardsVC, createCardsVC, searchCardsVC]
+        }
+        
+        
+    }
