@@ -46,12 +46,13 @@ class CreateCardsView: UIView {
         button.setTitle("Create Card", for: .normal)
         button.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
         button.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+        resignFirstResponder()
         return button
     }()
     
     
     public lazy var alert: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "☠️ NO CARD FOR YOU ☠️"
         label.textAlignment = .center
         label.textColor = .systemRed
@@ -60,34 +61,31 @@ class CreateCardsView: UIView {
     }()
     
     
-//----------------------------------------------------------------
-// MARK: OBJC METHODS
+    //----------------------------------------------------------------
+    // MARK: OBJC METHODS
     
     @objc private func saveButtonPressed(_ sender: UIButton) {
         if titleTextField.text?.isEmpty ?? true || factOneTextView.text.isEmpty || factTwoTextView.text.isEmpty {
             sender.isEnabled = false
-            animate()
-            
+            UIView.transition(with: self, duration: 1.0, options: [.transitionFlipFromLeft], animations: {
+                self.alert.alpha = 1.0
+            }, completion: nil)
         } else {
             sender.isEnabled = true
             
-            let newCard = Card(quizTitle: titleTextField.text ?? "", facts: [factOneTextView.text, factTwoTextView.text])
-            delegate?.didCreateCard(card: newCard)
+            let newCreatedCard = Card(quizTitle: titleTextField.text ?? "Pursuit", facts: [factOneTextView.text, factTwoTextView.text])
+            
+            delegate?.didCreateCard(card: newCreatedCard)
+            
             alert.alpha = 0
+            
+            resignFirstResponder()
         }
         
         sender.isEnabled = true
     }
-
-//----------------------------------------------------------------
-
     
-    private func animate() {
-        UIView.transition(with: self, duration: 1.0, options: [.transitionFlipFromTop], animations: {
-            self.alert.alpha = 1.0
-        }, completion: nil)
-    }
-        
+    //----------------------------------------------------------------
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -104,9 +102,9 @@ class CreateCardsView: UIView {
         createCardButtonConstraints()
         alertConstraints()
     }
-
-//------------------------------------------------------------------------------------------------
-// MARK: CONSTRAINTS
+    
+    //------------------------------------------------------------------------------------------------
+    // MARK: CONSTRAINTS
     
     private func titleTextFieldConstraints() {
         addSubview(titleTextField)

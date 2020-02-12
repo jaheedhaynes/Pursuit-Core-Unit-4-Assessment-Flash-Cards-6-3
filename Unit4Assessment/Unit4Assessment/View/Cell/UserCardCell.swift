@@ -29,7 +29,7 @@ class UserCardCell: UICollectionViewCell {
     
     public lazy var cardTitle: UILabel = {
         let label = UILabel()
-        label.text = "flash card sample"
+        label.text = "flash card"
         label.numberOfLines = 2
         return label
     }()
@@ -89,12 +89,12 @@ class UserCardCell: UICollectionViewCell {
 
     private func animate() {
         if isPressed {
-            UIView.transition(with: self, duration: 1.0, options: [.transitionFlipFromRight], animations: {
-                self.answers.alpha = 1.0
+            UIView.transition(with: self, duration: 0.5, options: [.transitionFlipFromRight], animations: {
+                self.answers.alpha = 1
                 self.cardTitle.alpha = 0
             }, completion: nil)
         } else {
-            UIView.transition(with: self, duration: 1.0, options: [.transitionFlipFromLeft], animations: {
+            UIView.transition(with: self, duration: 0.5, options: [.transitionFlipFromLeft], animations: {
                 self.answers.alpha = 0
                 self.cardTitle.alpha = 1.0
             }, completion: nil)

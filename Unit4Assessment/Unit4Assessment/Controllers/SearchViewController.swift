@@ -10,7 +10,7 @@ import UIKit
 import DataPersistence
 
 class SearchCardsViewController: UIViewController {
-
+    
     private let searchView = SearchCardsView()
     
     public var dataPersistence: DataPersistence<Card>!
@@ -73,7 +73,7 @@ extension SearchCardsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
-
+    
 }
 
 
@@ -113,7 +113,7 @@ extension SearchCardsViewController: SaveUserCreateCardDelegate {
         }
         do {
             try dataPersistence.createItem(card)
-            showAlert(title: "Card added to collection", message: "\(card.quizTitle) Saved")
+            showAlert(title: "Card Added", message: "\(card.quizTitle) Saved")
         } catch {
             //print("could not save \(error)")
             showAlert(title: "Failed to Save \(card.quizTitle)", message: "Unable to save error: \(error)")

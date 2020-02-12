@@ -90,6 +90,9 @@ class SearchCell: UICollectionViewCell {
         }
     }
     
+//------------------------------------------------------------------------------------------------
+// MARK: CONSTRAINTS
+    
     private func buttonConstraints() {
         addSubview(addButton)
         addButton.translatesAutoresizingMaskIntoConstraints = false
