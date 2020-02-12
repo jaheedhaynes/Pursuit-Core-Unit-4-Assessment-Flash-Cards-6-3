@@ -38,18 +38,21 @@ class UserCardsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        loadMyCards()
+        loadUserCards()
     }
     
-    func loadMyCards() {
+    func loadUserCards() {
         do {
             myCards = try dataPersistence.loadItems()
         } catch {
-            print("could not load cards \(error)")
+            showAlert(title: "ERROR", message: "Could not load cards")
         }
     }
     
 }
+
+//-------------------------------------------------------------------------------------------------------
+// MARK: EXTENSIONS
 
 extension UserCardsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -60,6 +63,7 @@ extension UserCardsViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
 extension UserCardsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myCards.count
@@ -78,13 +82,14 @@ extension UserCardsViewController: UICollectionViewDataSource {
     }
     
 }
+
 extension UserCardsViewController: DataPersistenceDelegate {
     func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
-        loadMyCards()
+        loadUserCards()
     }
     
     func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
-        loadMyCards()
+        loadUserCards()
     }
 }
 
