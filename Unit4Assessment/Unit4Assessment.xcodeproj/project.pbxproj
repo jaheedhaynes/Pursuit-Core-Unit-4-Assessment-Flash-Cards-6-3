@@ -19,7 +19,7 @@
 		3015DA6923F304DF002DD19D /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3015DA6823F304DF002DD19D /* ImageKit */; };
 		3015DA6D23F320A3002DD19D /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA6C23F320A3002DD19D /* CardCell.swift */; };
 		3015DA6F23F32625002DD19D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA6E23F32625002DD19D /* SearchCell.swift */; };
-		3015DA7123F32BA8002DD19D /* CardData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3015DA7023F32BA8002DD19D /* CardData.json */; };
+		3015DA7123F32BA8002DD19D /* FlashCards.json in Resources */ = {isa = PBXBuildFile; fileRef = 3015DA7023F32BA8002DD19D /* FlashCards.json */; };
 		3015DA7323F3343F002DD19D /* LocalAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA7223F3343F002DD19D /* LocalAPIClient.swift */; };
 		3015DA7523F33DB4002DD19D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA7423F33DB4002DD19D /* DataManager.swift */; };
 		3015DA7723F34F34002DD19D /* CardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015DA7623F34F34002DD19D /* CardDetail.swift */; };
@@ -56,7 +56,7 @@
 		3015DA6523F30370002DD19D /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		3015DA6C23F320A3002DD19D /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		3015DA6E23F32625002DD19D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
-		3015DA7023F32BA8002DD19D /* CardData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CardData.json; sourceTree = "<group>"; };
+		3015DA7023F32BA8002DD19D /* FlashCards.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FlashCards.json; sourceTree = "<group>"; };
 		3015DA7223F3343F002DD19D /* LocalAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAPIClient.swift; sourceTree = "<group>"; };
 		3015DA7423F33DB4002DD19D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3015DA7623F34F34002DD19D /* CardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetail.swift; sourceTree = "<group>"; };
@@ -134,8 +134,17 @@
 			children = (
 				3015DA6523F30370002DD19D /* APIClient.swift */,
 				3015DA7223F3343F002DD19D /* LocalAPIClient.swift */,
+				3023EC8923F4766F0082A338 /* JSON */,
 			);
 			path = APIClients;
+			sourceTree = "<group>";
+		};
+		3023EC8923F4766F0082A338 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				3015DA7023F32BA8002DD19D /* FlashCards.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		5790238B23F2EE39000AA216 = {
@@ -161,11 +170,10 @@
 			children = (
 				5790239723F2EE39000AA216 /* AppDelegate.swift */,
 				5790239923F2EE39000AA216 /* SceneDelegate.swift */,
-				3015DA6323F30203002DD19D /* Model.swift */,
-				3015DAAF23F368D1002DD19D /* APIClients */,
 				3015DA7423F33DB4002DD19D /* DataManager.swift */,
+				3015DA6323F30203002DD19D /* Model.swift */,
 				3015DAAD23F36305002DD19D /* showAlert.swift */,
-				3015DA7023F32BA8002DD19D /* CardData.json */,
+				3015DAAF23F368D1002DD19D /* APIClients */,
 				3015DA6023F2FC00002DD19D /* View */,
 				3015DA5923F2FBA4002DD19D /* Controllers */,
 				579023A023F2EE3B000AA216 /* Assets.xcassets */,
@@ -271,7 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3015DA7123F32BA8002DD19D /* CardData.json in Resources */,
+				3015DA7123F32BA8002DD19D /* FlashCards.json in Resources */,
 				579023A423F2EE3B000AA216 /* LaunchScreen.storyboard in Resources */,
 				579023A123F2EE3B000AA216 /* Assets.xcassets in Resources */,
 			);
