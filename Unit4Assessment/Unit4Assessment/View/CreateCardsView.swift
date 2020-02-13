@@ -51,7 +51,7 @@ class CreateCardsView: UIView {
     }()
     
     
-    public lazy var alert: UILabel = {
+    public lazy var createCardAlert: UILabel = {
         let label = UILabel()
         label.text = "☠️ NO CARD FOR YOU ☠️"
         label.textAlignment = .center
@@ -68,7 +68,7 @@ class CreateCardsView: UIView {
         if titleTextField.text?.isEmpty ?? true || factOneTextView.text.isEmpty || factTwoTextView.text.isEmpty {
             sender.isEnabled = false
             UIView.transition(with: self, duration: 1.0, options: [.transitionFlipFromLeft], animations: {
-                self.alert.alpha = 1.0
+                self.createCardAlert.alpha = 1.0
             }, completion: nil)
         } else {
             sender.isEnabled = true
@@ -77,7 +77,7 @@ class CreateCardsView: UIView {
             
             delegate?.didCreateCard(card: newCreatedCard)
             
-            alert.alpha = 0
+            createCardAlert.alpha = 0
             
             resignFirstResponder()
         }
@@ -152,12 +152,12 @@ class CreateCardsView: UIView {
     }
     
     private func alertConstraints() {
-        addSubview(alert)
-        alert.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(createCardAlert)
+        createCardAlert.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            alert.topAnchor.constraint(equalTo: createCardButton.bottomAnchor, constant: 10),
-            alert.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
-            alert.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40)
+            createCardAlert.topAnchor.constraint(equalTo: createCardButton.bottomAnchor, constant: 10),
+            createCardAlert.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
+            createCardAlert.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40)
         ])
     }
 }

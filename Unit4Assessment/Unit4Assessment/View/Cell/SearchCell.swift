@@ -90,6 +90,10 @@ class SearchCell: UICollectionViewCell {
         }
     }
     
+    public func configureCell(for card: Card) {
+        cardTitle.text = card.quizTitle
+        answers.text = "\(card.facts.first ?? "") \n\(card.facts.last ?? "")"
+    }
 //------------------------------------------------------------------------------------------------
 // MARK: CONSTRAINTS
     
@@ -127,8 +131,5 @@ class SearchCell: UICollectionViewCell {
         ])
     }
     
-    public func configureCell(for card: Card) {
-        cardTitle.text = card.quizTitle
-        answers.text = "\(card.facts.first ?? "") \n\(card.facts.last ?? "")"
-    }
+    
 }
