@@ -18,7 +18,7 @@ class SearchCell: UICollectionViewCell {
     
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
        let gesture = UILongPressGestureRecognizer()
-        gesture.addTarget(self, action: #selector(didLongPress(_:)))
+        gesture.addTarget(self, action: #selector(longPressed(_:)))
         return gesture
     }()
     
@@ -103,6 +103,7 @@ class SearchCell: UICollectionViewCell {
             addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor)
         ])
     }
+    
     private func titleConstraints() {
         addSubview(cardTitle)
         cardTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -113,6 +114,7 @@ class SearchCell: UICollectionViewCell {
             cardTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
+    
     private func answersConstraints() {
         addSubview(answers)
         answers.translatesAutoresizingMaskIntoConstraints = false
@@ -124,6 +126,7 @@ class SearchCell: UICollectionViewCell {
             answers.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
+    
     public func configureCell(for card: Card) {
         cardTitle.text = card.quizTitle
         answers.text = "\(card.facts.first ?? "") \n\(card.facts.last ?? "")"

@@ -115,7 +115,6 @@ extension SearchCardsViewController: SaveUserCreateCardDelegate {
             try dataPersistence.createItem(card)
             showAlert(title: "Card Added", message: "\(card.quizTitle) Saved")
         } catch {
-            //print("could not save \(error)")
             showAlert(title: "Failed to Save \(card.quizTitle)", message: "Unable to save error: \(error)")
         }
     }
